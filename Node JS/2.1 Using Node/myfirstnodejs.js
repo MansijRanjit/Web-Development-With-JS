@@ -7,7 +7,9 @@ const port = 8080;
 http
   .createServer(function (req, res) {
     res.writeHead(200, { "Content-Type": "text/html" });
-    res.write("Supermansij");
+    res.write(req.url); //req argument represents the request from the client, as an object which has a property called "url" which holds the part of the url that comes after the domain name
+    res.write(`
+    Supermansij :`);
     res.end("Hello World!");
   })
   .listen(port, hostname, () => {
