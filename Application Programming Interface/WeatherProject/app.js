@@ -1,4 +1,4 @@
-//stringify and parse JSON
+//////////Stringify and parse JSON/////////
 /*
 const intro = {
   name: "mansij",
@@ -22,8 +22,7 @@ const https = require("https");
 const app = express();
 
 app.get("/", function (req, res) {
-  res.send("Server is up and running");
-
+  //From site link https://openweathermap.org/current
   const url =
     "https://api.openweathermap.org/data/2.5/weather?q=Nepal,Kathmandu&appid=6280234d12c32699496cd23bed2fd2a0&units=metric";
   https.get(url, function (response) {
@@ -31,8 +30,17 @@ app.get("/", function (req, res) {
 
     response.on("data", function (data) {
       const weatherData = JSON.parse(data);
-      console.log(weatherData);
-      console.log(weatherData.weather[0].description);
+      //console.log(weatherData);
+      //console.log(weatherData.weather[0].description);
+      const temp = weatherData.main.temp;
+      const weatherDescription = weatherData.weather[0].description;
+      const icon = weatherData.weather[0].icon;
+      const imageUrl = "https://openweathermap.org/img/wn/" + icon + "@2x.png";
+
+      res.write(`<h1>Todays temperature is : ${temp}</h1>`);
+      res.write("<p>The weather description is " + weatherDescription + "</p>");
+      res.write("<img src=" + imageUrl + ">");
+      res.send();
     });
   });
 });
