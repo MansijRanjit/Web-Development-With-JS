@@ -39,12 +39,12 @@
     ></script>
 
     <!-- Custom styles for this template -->
-    <link href="styles.css" rel="stylesheet" />
+    <link href="css/styles.css" rel="stylesheet" />
   </head>
 
   <body class="d-flex align-items-center py-4 bg-body-tertiary">
     <main class="form-signup w-100 m-auto">
-      <form>
+      <form action="/" method="post">
         <img
           class="mb-4"
           src="images/sign-in-64.png"
@@ -56,6 +56,7 @@
 
         <div class="form-floating">
           <input
+            name="fName"
             type="text"
             class="form-control top"
             id="floatingInput"
@@ -66,6 +67,7 @@
 
         <div class="form-floating">
           <input
+            name="lName"
             type="text"
             class="form-control middle"
             id="floatingInput"
@@ -76,6 +78,7 @@
 
         <div class="form-floating">
           <input
+            name="email"
             type="email"
             class="form-control middle"
             id="floatingInput"
@@ -86,6 +89,7 @@
 
         <div class="form-floating">
           <input
+            name="password"
             type="password"
             class="form-control bottom"
             id="floatingPassword"
