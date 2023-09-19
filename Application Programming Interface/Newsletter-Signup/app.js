@@ -1,5 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const https = require("https");
 const request = require("request");
 
 const app = express();
@@ -15,18 +16,44 @@ app.post("/", function (req, res) {
   const firstName = req.body.fName;
   const lastName = req.body.lName;
   const email = req.body.email;
-  const password = req.body.password;
+  //const password = req.body.password;
 
-  // console.log(firstName, lastName, email, password);
+  console.log(firstName, lastName, email);
 
-  var data = {
+  const data = {
     members: [
       {
         email_address: email,
         status: "subscribed",
+        merge_fields: {
+          FNAME: firstName,
+          LNAME: lastName,
+        },
       },
     ],
   };
+
+  const jsonData = JSON.stringify(data);
+
+  const url = "https://us21.api.mailchimp.com/3.0/lists/975e0b9f62";
+
+  const options = {
+    method: "POST",
+    auth: "mansij:37a8a38a7c123d6d627c1e8e59548ae8-us21",
+  };
+
+  const r = https.request(url, options, function (response) {
+    response.on("data", function (data) {
+      console.log(JSON.parse(data));
+    });
+  });
+
+  r.on("error", function (e) {
+    console.log(e);
+  });
+
+  r.write(jsonData);
+  r.end;
 });
 
 app.listen(3000, function () {
@@ -34,7 +61,8 @@ app.listen(3000, function () {
 });
 
 //API key
-//59c533e3fdc8d57da2f307df9770cb7e-us21
+//59c533e3fdc8d57da2f307df9770cb7e-
+//37a8a38a7c123d6d627c1e8e59548ae8-us21
 
 //Audience Id or List Id
 //975e0b9f62
