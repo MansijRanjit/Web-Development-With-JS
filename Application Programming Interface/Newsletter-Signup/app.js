@@ -1,6 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const https = require("https");
+const https = require("node:https");
 const request = require("request");
 
 const app = express();
@@ -38,11 +38,17 @@ app.post("/", function (req, res) {
   const url = "https://us21.api.mailchimp.com/3.0/lists/975e0b9f62";
 
   const options = {
-    method: "POST",
+    method: "post",
     auth: "mansij:37a8a38a7c123d6d627c1e8e59548ae8-us21",
   };
 
   const r = https.request(url, options, function (response) {
+    if (response.statusCode === 200) {
+      res.send("Successfully subscribed!");
+    } else {
+      res.send("There was error in signing up, please try again!");
+    }
+
     response.on("data", function (data) {
       console.log(JSON.parse(data));
     });
