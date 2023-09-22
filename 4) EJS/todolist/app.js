@@ -6,7 +6,15 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/", function (req, res) {
-  res.send("Hello");
+  let today = new Date();
+  let currentDay = today.getDay();
+
+  if (currentDay === 0 || currentDay === 6) {
+    res.write("<h1>Holiday</h1>");
+    res.write(`<p>${currentDay}</p>`);
+  } else {
+    res.sendFile(__dirname + "/index.html");
+  }
 });
 app.listen(3000, function () {
   console.log("Server started on port 3000");
