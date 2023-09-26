@@ -39,10 +39,13 @@ app.get("/", function (req, res) {
   // }
 
   const options = { weekday: "long", month: "long", day: "numeric" };
-  const day1 = today.toLocaleDateString("en-US,options");
+  const day1 = today.toLocaleDateString("en-US", options);
   res.render("list", { day: day1 });
 });
 
+app.post("/", function (req, res) {
+  var item = req.body.newItem;
+});
 app.listen(3000, function () {
   console.log("Server started on port 3000");
 });
