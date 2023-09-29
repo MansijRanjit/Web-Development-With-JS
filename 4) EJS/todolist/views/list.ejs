@@ -7,22 +7,22 @@
     <title>To DO LIST</title>
   </head>
   <body>
-    <h1>Today is <%= day %></h1>
+    <div class="box" id="heading">
+      <h1>Today is <%= day %></h1>
+    </div>
     <!-- <% if(day==="Sunday" || day==="Saturday"){%>
     <h1 style="color: red"><%=day%> TODO List</h1>
     <%}else{%>
     <h1 style="color: blueviolet"><%=day%> TODO List</h1>
     <%}%> -->
-    <ul>
-      <!-- <li>Buy Food</li>
-      <li>Cook Food</li>
-      <li>Eat Food</li> -->
-      <!-- <li><%= newList%></li> -->
 
+    <div class="box">
       <% for(let i=0;i<newList.length;i++){ %>
-        <li><%= newList[i] %></li>
+        <div class="item">
+         <p><%= newList[i] %></p>
+        </div>
       <%}%>
-    </ul>
+    </div>
 
     <form class="" action="/" method="post">
       <input name="newItem" type="text" />
