@@ -45,7 +45,7 @@ app.get("/", function (req, res) {
     month: "long",
     day: "numeric",
   };
-  const dayInfo = today.toLocaleDateString("en-US", options);
+  const dayInfo = today.toLocaleDateString("en-US", options); //Javascript date format
   res.render("list", { day: dayInfo, newList: items });
 });
 
