@@ -1,6 +1,9 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 
+const date = require(__dirname + "/date.js");
+console.log(date);
+
 const app = express();
 app.set("view engine", "ejs");
 
@@ -23,7 +26,7 @@ let workItems =[];
 // });
 
 app.get("/", function (req, res) {
-  let today = new Date();
+  //let today = new Date();
   //let currentDay = today.getDay();
 
   // if (currentDay === 0) {
@@ -42,12 +45,7 @@ app.get("/", function (req, res) {
   //   res.render("list", { day: "Saturday" });
   // }
 
-  const options = {
-    weekday: "long",
-    month: "long",
-    day: "numeric",
-  };
-  const dayInfo = today.toLocaleDateString("en-US", options); //Javascript date format
+  let dayInfo=date.getDate();
   res.render("list", { ListTitle: dayInfo, newList: items });
 });
 
