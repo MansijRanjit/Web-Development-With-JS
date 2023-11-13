@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
 app.get("/",function(req,res){
-  res.render("home",{Content:homeStartingContent, post:posts});
+  res.render("home",{Content:homeStartingContent, posts:posts});
 
 });
 
@@ -42,9 +42,15 @@ app.post("/compose",function(req,res){
   res.redirect("/");
 });
 
-
-
-
+app.get("/posts/:title",function(req,res){
+  posts.forEach(function(post){
+    if(req.params.title === post.title){
+      console.log("Match Found");
+    }else{
+      console.log("Not a Match");
+    }
+  });
+});
 
 
 
